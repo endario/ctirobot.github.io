@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-22T12:06:26+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Candela</title><subtitle>Candela Blogs </subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2019/07/22/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2019-07-22T11:53:16+08:00</published><updated>2019-07-22T11:53:16+08:00</updated><id>http://localhost:4000/jekyll/update/2019/07/22/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/22/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-22T12:15:42+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Candela</title><subtitle>Candela Blogs </subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2019/07/22/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2019-07-22T11:53:16+08:00</published><updated>2019-07-22T11:53:16+08:00</updated><id>http://localhost:4000/jekyll/update/2019/07/22/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/22/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
 
@@ -10,10 +10,9 @@
 &lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">对接文档</title><link href="http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html" rel="alternate" type="text/html" title="对接文档" /><published>2019-07-22T11:53:16+08:00</published><updated>2019-07-22T11:53:16+08:00</updated><id>http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3</id><content type="html" xml:base="http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html">&lt;h1 id=&quot;xxxx-对接文档&quot;&gt;XXXX 对接文档&lt;/h1&gt;
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">对接文档</title><link href="http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html" rel="alternate" type="text/html" title="对接文档" /><published>2019-07-22T11:53:16+08:00</published><updated>2019-07-22T11:53:16+08:00</updated><id>http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3</id><content type="html" xml:base="http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html">&lt;p&gt;版本: 0.1.0&lt;/p&gt;
 
-&lt;p&gt;版本: 0.1.0
-日期: 2019-07-16&lt;/p&gt;
+&lt;p&gt;日期: 2019-07-16&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -33,16 +32,54 @@
 
 &lt;p&gt;&lt;strong&gt;业务接口采用的是RESTful接口，支持包括GET、POST、PUT、DELETE、PATCH等HTTP方法，返回值统一以JSON返回。&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;HTTP状态码定义
-|状态码|定义|解决办法与原因|
-|——|—|——|
-|200|请求成功| - |
-|400|请求失败，请求参数或业务规则不匹配。属于正常的客户端错误|建议阅读文档，检查参数或业务规则|
-|401|请求失败，无效的匿名请求 或 认证拒绝（OAuth2.0定义），或权限不足(OAuth2.0定义)|建议检查请请求头或Token有效性|
-|403|请求失败，权限不足拒绝访问，接口或对象无访问权限|建议确认操作对象，或要求服务方提供权限
-|404|请求失败，接口或对象未找到|-|
-|412|请求失败，请接口请求的部分条件不满足|-|
-|5xx|服务器内部错误|建议联系服务方|&lt;/p&gt;
+&lt;p&gt;HTTP状态码定义&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;状态码&lt;/th&gt;
+      &lt;th&gt;定义&lt;/th&gt;
+      &lt;th&gt;解决办法与原因&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;200&lt;/td&gt;
+      &lt;td&gt;请求成功&lt;/td&gt;
+      &lt;td&gt;-&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;400&lt;/td&gt;
+      &lt;td&gt;请求失败，请求参数或业务规则不匹配。属于正常的客户端错误&lt;/td&gt;
+      &lt;td&gt;建议阅读文档，检查参数或业务规则&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;401&lt;/td&gt;
+      &lt;td&gt;请求失败，无效的匿名请求 或 认证拒绝（OAuth2.0定义），或权限不足(OAuth2.0定义)&lt;/td&gt;
+      &lt;td&gt;建议检查请请求头或Token有效性&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;403&lt;/td&gt;
+      &lt;td&gt;请求失败，权限不足拒绝访问，接口或对象无访问权限&lt;/td&gt;
+      &lt;td&gt;建议确认操作对象，或要求服务方提供权限&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;404&lt;/td&gt;
+      &lt;td&gt;请求失败，接口或对象未找到&lt;/td&gt;
+      &lt;td&gt;-&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;412&lt;/td&gt;
+      &lt;td&gt;请求失败，请接口请求的部分条件不满足&lt;/td&gt;
+      &lt;td&gt;-&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;5xx&lt;/td&gt;
+      &lt;td&gt;服务器内部错误&lt;/td&gt;
+      &lt;td&gt;建议联系服务方&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;接口地址：&lt;/p&gt;
 
@@ -396,4 +433,4 @@
   &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;Integer&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;HTTP&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;状态码&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
   &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;error&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;String&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;错误原因&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">XXXX 对接文档</summary></entry></feed>
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">版本: 0.1.0</summary></entry></feed>
