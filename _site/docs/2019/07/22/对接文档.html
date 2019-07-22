@@ -7,15 +7,15 @@
 <meta name="generator" content="Jekyll v3.8.6" />
 <meta property="og:title" content="对接文档" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="版本: 0.1.0" />
-<meta property="og:description" content="版本: 0.1.0" />
+<meta name="description" content="版本: 0.1.1" />
+<meta property="og:description" content="版本: 0.1.1" />
 <link rel="canonical" href="http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html" />
 <meta property="og:url" content="http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html" />
 <meta property="og:site_name" content="Candela" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-07-22T11:53:16+08:00" />
 <script type="application/ld+json">
-{"url":"http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html","headline":"对接文档","dateModified":"2019-07-22T11:53:16+08:00","datePublished":"2019-07-22T11:53:16+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html"},"description":"版本: 0.1.0","@type":"BlogPosting","@context":"https://schema.org"}</script>
+{"url":"http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html","headline":"对接文档","dateModified":"2019-07-22T11:53:16+08:00","datePublished":"2019-07-22T11:53:16+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html"},"description":"版本: 0.1.1","@type":"BlogPosting","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Candela" /></head>
 <body><header class="site-header" role="banner">
@@ -45,9 +45,18 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>版本: 0.1.0</p>
+    <p>版本: 0.1.1</p>
 
-<p>日期: 2019-07-16</p>
+<p>日期: 2019-07-22</p>
+
+<p>更新内容：</p>
+
+<ol>
+  <li>调整HTTP 4xx/5xx 返回值位置，之前在<code class="highlighter-rouge">3.1.2 指令</code>部分，现在移动到<code class="highlighter-rouge">1. 简介</code>；</li>
+  <li>完善指令部分请求与返回值描述，添加移动指令参数详情；</li>
+  <li>添加路点接口</li>
+  <li>修复部分小错误</li>
+</ol>
 
 <hr />
 
@@ -115,6 +124,16 @@
     </tr>
   </tbody>
 </table>
+
+<p>HTTP 状态码 4xx/5xx，返回值:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T02:35:55.861+0000"</span><span class="p">,</span><span class="w"> </span><span class="err">//响应时间</span><span class="w">
+    </span><span class="s2">"httpStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">HTTP状态描述</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Integer&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">HTTP</span><span class="w"> </span><span class="err">状态码</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">错误原因</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 <p>接口地址：</p>
 
@@ -266,6 +285,8 @@
 
 <p><img src="/img/2019-07-22-对接文档/postman-screenshot-1.jpg" alt="截图1" /></p>
 
+<p>由于<code class="highlighter-rouge">access_token</code>存在过期时间，因此建议再您自己的后台维护一个续签逻辑，保障每隔<code class="highlighter-rouge">expires_in</code>秒（因网络延迟，实际会比它小）重新获取一次<code class="highlighter-rouge">access_token</code>。</p>
+
 <hr />
 
 <h2 id="3-业务对接">3. 业务对接</h2>
@@ -285,7 +306,9 @@
 <p>上面这个操作等效于:
 <img src="/img/2019-07-22-对接文档/postman-screenshot-3.jpg" alt="截图3" /></p>
 
-<h3 id="31-查询接口">3.1 查询接口</h3>
+<h3 id="31-指令接口">3.1 指令接口</h3>
+
+<hr />
 
 <h4 id="311-抽象指令对象">3.1.1 抽象指令对象</h4>
 
@@ -296,11 +319,11 @@
 <p>精简的抽象指令请求对象：</p>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678-1234-1234-1234-123456789012"</span><span class="p">,</span><span class="w"> </span><span class="err">//一个UUID</span><span class="w">
-    </span><span class="s2">"commandState"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w"> </span><span class="err">//指令当前的状态</span><span class="w">
-    </span><span class="s2">"commandType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOVE"</span><span class="p">,</span><span class="w"> </span><span class="err">//指令类型</span><span class="w">
-    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ROBOT"</span><span class="p">,</span><span class="w"> </span><span class="err">//作用实体（设备）</span><span class="w">
-    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"81f7cc0c-b458-4312-a0b2-c88db10ec463"</span><span class="p">,</span><span class="w"> </span><span class="err">//作用实体Id（设备Id）</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678-1234-1234-1234-123456789012"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">一个UUID</span><span class="w">
+    </span><span class="s2">"commandState"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">指令当前的状态</span><span class="w">
+    </span><span class="s2">"commandType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">指令类型</span><span class="w">
+    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ROBOT"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">作用实体（设备）</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"81f7cc0c-b458-4312-a0b2-c88db10ec463"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">作用实体Id（设备Id）</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -331,7 +354,7 @@
     <tr>
       <td>entityType</td>
       <td>设备类型</td>
-      <td>ROBOT, HIVE, ELEVATOR</td>
+      <td>ROBOT</td>
     </tr>
     <tr>
       <td>entityId</td>
@@ -353,8 +376,13 @@
   </span><span class="s2">"detail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"scheduleHistory"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">调度历史</span><span class="w">
   </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"contextType"</span><span class="p">:</span><span class="s2">"&lt;String&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">上下文类型，默认无。对接方无需考虑该字段</span><span class="w">
+  </span><span class="s2">"context"</span><span class="p">:</span><span class="s2">"&lt;uuid&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">上下文Id，默认无。对接方无需考虑该字段</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"&lt;String&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">错误代码</span><span class="p">,</span><span class="w"> </span><span class="err">默认无，仅在执行出错是存在。</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"&lt;String&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">错误信息</span><span class="p">,</span><span class="w"> </span><span class="err">默认无，仅在执行出错是存在。</span><span class="w">
+  </span><span class="s2">"derail"</span><span class="p">:</span><span class="s2">"&lt;Object&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">错误细节</span><span class="p">,</span><span class="w"> </span><span class="err">默认无，仅在执行出错是存在。</span><span class="w">
   </span><span class="s2">"retryable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可重试</span><span class="w">
-  </span><span class="s2">"retries"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="err">/重试次数</span><span class="w">
+  </span><span class="s2">"retries"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">重试次数</span><span class="w">
   </span><span class="s2">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631638612</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">更新时间</span><span class="w">
   </span><span class="s2">"firstTriggeredTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631637451</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">第一次触发时间</span><span class="w">
   </span><span class="s2">"lastTriggeredTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631637451</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">最后一次触发时间</span><span class="w">
@@ -362,10 +390,12 @@
   </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b800c58-2952-4c98-9004-5ea4f33f92b8"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">创建人</span><span class="w">
   </span><span class="s2">"createdTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631637430</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">创建时间</span><span class="w">
   </span><span class="s2">"lastModifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b800c58-2952-4c98-9004-5ea4f33f92b8"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">最后修改人</span><span class="w">
-  </span><span class="s2">"lastModifiedTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631639549</span><span class="p">,</span><span class="w"> </span><span class="err">//修改时间</span><span class="w">
-  </span><span class="s2">"expiryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-08-19T14:07:19.548+0000"</span><span class="w"> </span><span class="err">//过期时间</span><span class="w">
+  </span><span class="s2">"lastModifiedTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631639549</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">修改时间</span><span class="w">
+  </span><span class="s2">"expiryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-08-19T14:07:19.548+0000"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">过期时间</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+
+<hr />
 
 <h4 id="312-查询指令">3.1.2 查询指令</h4>
 
@@ -386,8 +416,8 @@
       <td><code class="highlighter-rouge">api/task/v1/command/{id}</code></td>
     </tr>
     <tr>
-      <td>参数: id</td>
-      <td>指令Id</td>
+      <td>路径参数: <code class="highlighter-rouge">id</code></td>
+      <td>指令Id，必填</td>
     </tr>
     <tr>
       <td>请求头</td>
@@ -400,15 +430,7 @@
 
 <p>根据指令类型是一个继承于<code class="highlighter-rouge">完整的抽象指令返回对象</code>(详见3.1.1)的子类。</p>
 
-<p>HTTP 状态码 4xx/5xx，返回值:</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T02:35:55.861+0000"</span><span class="p">,</span><span class="w"> </span><span class="err">//响应时间</span><span class="w">
-  </span><span class="s2">"httpStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">HTTP状态描述</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Integer&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">HTTP</span><span class="w"> </span><span class="err">状态码</span><span class="w">
-  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">错误原因</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
+<hr />
 
 <h4 id="313-创建指令">3.1.3 创建指令</h4>
 
@@ -430,7 +452,7 @@
     </tr>
     <tr>
       <td>参数</td>
-      <td>JSON指令对象</td>
+      <td>JSON指令对象，必填</td>
     </tr>
     <tr>
       <td>请求头</td>
@@ -444,31 +466,200 @@
     <p>移动指令(Move)</p>
 
     <p>请求参数：
-  一个<code class="highlighter-rouge">精简的抽象指令请求对象</code>(详见3.1.1)</p>
+  <code class="highlighter-rouge">继承</code>于精简的抽象指令请求对象(详见3.1.1)</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"waypointId"</span><span class="p">:</span><span class="s2">"&lt;uuid&gt;"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
 
     <p>返回参数：
-  一个<code class="highlighter-rouge">完整的抽象指令返回对象</code>(详见3.1.1)</p>
+  <code class="highlighter-rouge">继承</code>于完整的抽象指令返回对象(详见3.1.1)</p>
+
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"waypointId"</span><span class="p">:</span><span class="s2">"&lt;uuid&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">路点Id</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
   </li>
   <li>
     <p>停止指令(Stop)</p>
 
     <p>请求参数：
-  <code class="highlighter-rouge">继承</code>于精简的抽象指令请求对象(详见3.1.1)</p>
+  一个<code class="highlighter-rouge">精简的抽象指令请求对象</code>(详见3.1.1)</p>
 
     <p>返回参数：
-  <code class="highlighter-rouge">继承</code>于完整的抽象指令返回对象(详见3.1.1)</p>
+  一个<code class="highlighter-rouge">完整的抽象指令返回对象</code>(详见3.1.1)</p>
   </li>
 </ul>
 
-<p>HTTP 状态码 4xx/5xx，返回值:</p>
+<h3 id="32-路点接口">3.2 路点接口</h3>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T02:35:55.861+0000"</span><span class="p">,</span><span class="w"> </span><span class="err">//响应时间</span><span class="w">
-  </span><span class="s2">"httpStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">HTTP状态描述</span><span class="w">
-  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Integer&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">HTTP</span><span class="w"> </span><span class="err">状态码</span><span class="w">
-  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">错误原因</span><span class="w">
+<p>通过园区mapBlockId进行过滤筛选，查询包含的所有路点。</p>
+
+<p>mapBlockId会单独给出。</p>
+
+<h4 id="321-路点对象">3.2.1 路点对象</h4>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">id</span><span class="w">
+    </span><span class="s2">"mapBlockId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">地图块ID</span><span class="w">
+    </span><span class="s2">"waypointType"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">路点类型</span><span class="w">
+    </span><span class="s2">"areaWaypointId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">区域路点ID</span><span class="w">
+    </span><span class="s2">"links"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">路径列表，Array&lt;Object&gt;</span><span class="w">
+    </span><span class="s2">"buildingId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">大厦ID</span><span class="w">
+    </span><span class="s2">"floorId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">楼层ID</span><span class="w">
+    </span><span class="s2">"level"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">楼层数</span><span class="w">
+    </span><span class="s2">"elevatorId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">电梯ID</span><span class="w">
+    </span><span class="s2">"longitude"</span><span class="p">:</span><span class="err">&lt;Double&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">经度</span><span class="w">
+    </span><span class="s2">"latitude"</span><span class="p">:</span><span class="err">&lt;Double&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">纬度</span><span class="w">
+    </span><span class="s2">"x"</span><span class="p">:</span><span class="err">&lt;Double&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">X</span><span class="w">
+    </span><span class="s2">"y"</span><span class="p">:</span><span class="err">&lt;Double&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">Y</span><span class="w">
+    </span><span class="s2">"location"</span><span class="p">:</span><span class="err">&lt;Double</span><span class="p">[]</span><span class="err">&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">GPS位置</span><span class="w">
+    </span><span class="s2">"coordinates"</span><span class="p">:</span><span class="err">&lt;Double</span><span class="p">[]</span><span class="err">&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">SLAM坐标</span><span class="w">
+    </span><span class="s2">"indoorLocation"</span><span class="p">:</span><span class="err">&lt;Double</span><span class="p">[]</span><span class="err">&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">室内位置</span><span class="w">
+    </span><span class="s2">"indoorCoordinates"</span><span class="p">:</span><span class="err">&lt;Double</span><span class="p">[]</span><span class="err">&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">室内SLAM坐标</span><span class="w">
+    </span><span class="s2">"direction"</span><span class="p">:</span><span class="err">&lt;Double&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">方向</span><span class="w">
+    </span><span class="s2">"forwardAdjustment"</span><span class="p">:</span><span class="err">&lt;Double&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">前方调整值</span><span class="w">
+    </span><span class="s2">"sideAdjustment"</span><span class="p">:</span><span class="err">&lt;Double&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">侧方调整值</span><span class="w">
+    </span><span class="s2">"angleAdjustment"</span><span class="p">:</span><span class="err">&lt;Double&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">角度调整值</span><span class="w">
+    </span><span class="s2">"thumbnail"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">缩略图</span><span class="w">
+    </span><span class="s2">"themeBackgrounds"</span><span class="p">:</span><span class="err">&lt;String</span><span class="p">[]</span><span class="err">&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">路点场景背景</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">路点名</span><span class="w">
+    </span><span class="s2">"address"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">路点地址</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">路点描述</span><span class="w">
+ </span><span class="err">//</span><span class="w">   </span><span class="s2">"cost"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">配送费</span><span class="w">
+    </span><span class="s2">"metaData"</span><span class="p">:</span><span class="err">&lt;Object&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">元数据</span><span class="w">
+    </span><span class="s2">"waypointDirections"</span><span class="p">:</span><span class="err">&lt;Object&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">路点方向表</span><span class="w">
+    </span><span class="s2">"dockAvailable"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否设有快递桩</span><span class="w">
+    </span><span class="s2">"bayAvailable"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否设有停车位</span><span class="w">
+    </span><span class="s2">"chargerAvailable"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否设有充电桩</span><span class="w">
+    </span><span class="s2">"exclusive"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否为独享路点</span><span class="w">
+    </span><span class="s2">"passThrough"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否为穿透路点</span><span class="w">
+    </span><span class="s2">"indoor"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否为室内路点</span><span class="w">
+    </span><span class="s2">"selectable"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否可选</span><span class="w">
+    </span><span class="s2">"test"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否为测试路点</span><span class="w">
+    </span><span class="s2">"cruise"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否为巡游路点</span><span class="w">
+    </span><span class="s2">"relocatable"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否为可重定位路点</span><span class="w">
+    </span><span class="s2">"locked"</span><span class="p">:</span><span class="err">&lt;Boolean&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">是否被锁定</span><span class="w">
+    </span><span class="s2">"lockedBy"</span><span class="p">:</span><span class="s2">"&lt;UUID&gt;"</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">锁定机器人ID</span><span class="w">
+    </span><span class="s2">"lockedTime"</span><span class="p">:</span><span class="err">&lt;Long&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">锁定时间</span><span class="w">
+    </span><span class="s2">"distance"</span><span class="p">:</span><span class="err">&lt;Double&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">距离</span><span class="w">
+    </span><span class="s2">"createdTime"</span><span class="p">:</span><span class="err">&lt;Long&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">创建时间</span><span class="w">
+    </span><span class="s2">"lastModifiedTime"</span><span class="p">:</span><span class="err">&lt;Long&gt;</span><span class="p">,</span><span class="w">    </span><span class="err">//</span><span class="w"> </span><span class="err">最后修改时间</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+
+<p>WaypointType 路点类型</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>值</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NORMAL</td>
+      <td>普通路点</td>
+    </tr>
+    <tr>
+      <td>BAY</td>
+      <td>车位</td>
+    </tr>
+    <tr>
+      <td>HUB</td>
+      <td>驿站</td>
+    </tr>
+    <tr>
+      <td>DOCK</td>
+      <td>桩</td>
+    </tr>
+    <tr>
+      <td>OUTDOOR</td>
+      <td>户外</td>
+    </tr>
+    <tr>
+      <td>BUILDING</td>
+      <td>楼宇</td>
+    </tr>
+    <tr>
+      <td>INTERCHANGE</td>
+      <td>接驳</td>
+    </tr>
+    <tr>
+      <td>LIFT</td>
+      <td>电梯</td>
+    </tr>
+    <tr>
+      <td>PARKING</td>
+      <td>停车场</td>
+    </tr>
+    <tr>
+      <td>CHARGER</td>
+      <td>充电桩</td>
+    </tr>
+    <tr>
+      <td>HOME</td>
+      <td>初始点</td>
+    </tr>
+    <tr>
+      <td>HOLD</td>
+      <td>等待</td>
+    </tr>
+    <tr>
+      <td>BUFFER</td>
+      <td>缓冲</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="322-查询路点">3.2.2 查询路点</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Method</td>
+      <td>GET</td>
+    </tr>
+    <tr>
+      <td>Path</td>
+      <td><code class="highlighter-rouge">api/map/v1/waypoint</code></td>
+    </tr>
+    <tr>
+      <td>查询参数: <code class="highlighter-rouge">mapBlockId</code></td>
+      <td>所在园区地图块Id, <code class="highlighter-rouge">必填</code></td>
+    </tr>
+    <tr>
+      <td>查询参数: <code class="highlighter-rouge">page</code></td>
+      <td>分页索引，可选，默认0</td>
+    </tr>
+    <tr>
+      <td>查询参数: <code class="highlighter-rouge">pageSize</code></td>
+      <td>页宽，可选，默认10</td>
+    </tr>
+    <tr>
+      <td>请求头</td>
+      <td>Authorization: Bearer <code class="highlighter-rouge">&lt;access_token&gt;</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>返回值：
+|名称|值|
+|—|—|
+|Body|路点对象的JSON数组|
+|Header: ` x-pagination-page-count<code class="highlighter-rouge">|当前总页数|
+|Header: </code> x-pagination-page-number<code class="highlighter-rouge">|当前页数|
+|Header: </code> x-pagination-page-size<code class="highlighter-rouge">|当前分页宽度|
+|Header: </code> x-pagination-total-count`|总元素数量|</p>
 
   </div><a class="u-url" href="/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html" hidden></a>
 </article>
