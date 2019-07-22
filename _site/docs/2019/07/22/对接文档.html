@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>对接文档 | Candela</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="对接文档" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="XXXX 对接文档" />
+<meta property="og:description" content="XXXX 对接文档" />
+<link rel="canonical" href="http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html" />
+<meta property="og:url" content="http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html" />
+<meta property="og:site_name" content="Candela" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-22T11:53:16+08:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html","headline":"对接文档","dateModified":"2019-07-22T11:53:16+08:00","datePublished":"2019-07-22T11:53:16+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html"},"description":"XXXX 对接文档","@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Candela" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Candela</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">对接文档</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-07-22T11:53:16+08:00" itemprop="datePublished">Jul 22, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="xxxx-对接文档">XXXX 对接文档</h1>
+
+<p>版本: 0.1.0
+日期: 2019-07-16</p>
+
+<hr />
+
+<h2 id="1-简介">1. 简介</h2>
+
+<p>对接文档主要分为2个部分：认证与授权、业务对接。</p>
+
+<ul>
+  <li>认证与授权： 主要介绍的服务端令牌获取流程，以及令牌刷新逻辑</li>
+  <li>业务对接： 顾名思义，主要介绍开放平台机器人指令层相关接口对接内容。</li>
+</ul>
+
+<p>开放平台基于<code class="highlighter-rouge">OAuth2.0</code>协议，采用<code class="highlighter-rouge">JWT</code>认证完成相关的认证与授权访问。
+在这里建议对OAuth2.0的认证流程有一点了解以后再进行后续阅读。</p>
+
+<p><strong>OAuth2.0 相关的认证接口不支持以JSON形式发送POST请求，只支持GET、POST/form-data、POST/x-www-form-urlencoded三种HTTP请求方式，，可以在Postman中很轻松的实现。</strong></p>
+
+<p><strong>业务接口采用的是RESTful接口，支持包括GET、POST、PUT、DELETE、PATCH等HTTP方法，返回值统一以JSON返回。</strong></p>
+
+<p>HTTP状态码定义
+|状态码|定义|解决办法与原因|
+|——|—|——|
+|200|请求成功| - |
+|400|请求失败，请求参数或业务规则不匹配。属于正常的客户端错误|建议阅读文档，检查参数或业务规则|
+|401|请求失败，无效的匿名请求 或 认证拒绝（OAuth2.0定义），或权限不足(OAuth2.0定义)|建议检查请请求头或Token有效性|
+|403|请求失败，权限不足拒绝访问，接口或对象无访问权限|建议确认操作对象，或要求服务方提供权限
+|404|请求失败，接口或对象未找到|-|
+|412|请求失败，请接口请求的部分条件不满足|-|
+|5xx|服务器内部错误|建议联系服务方|</p>
+
+<p>接口地址：</p>
+
+<ul>
+  <li>测试环境： <a href="https://staging.api.ctirobot.com">https://staging.api.ctirobot.com</a></li>
+  <li>生产环境： <a href="https://api.ctirobot.com">https://api.ctirobot.com</a></li>
+</ul>
+
+<p>对接初期建议只采用测试环境进行对接，对接调试的时，建议先使用<code class="highlighter-rouge">Postman</code>之类的 HTTP Client 调试工具进行验证。</p>
+
+<p>测试环境里反馈的问题，会在1-4小时内尽快解决，生产环境反馈的问题，会在隔天解决。</p>
+
+<hr />
+
+<h2 id="2-认证与授权">2. 认证与授权</h2>
+
+<p>第三方客户对接开放平台指令层时，采用的是<code class="highlighter-rouge">OAuth2.0</code> 中的 <code class="highlighter-rouge">client_credentials</code> 流程。如果有微信公众号开发经验的话，应该不会太陌生，这个流程有点类似于微信公众号的认证方式。</p>
+
+<p><code class="highlighter-rouge">client_credentials</code>中需要的客户端凭据(<code class="highlighter-rouge">client_id:client_secret</code>)，需要找服务方申请获得，待激活后方可使用。</p>
+
+<p>认证接口，采用 HTTP Basic 认证。完成认证后，接口会返回JWT Token。</p>
+
+<p>Basic认证时，需要将客户端凭据按照 <code class="highlighter-rouge">client_id:client_secret</code> 拼接后 <code class="highlighter-rouge">Base64Encode</code>处理。</p>
+
+<hr />
+
+<h3 id="21-通用返回结果">2.1 通用返回结果</h3>
+
+<p>开放平台所有的认证接口都相同形式的内容，但有时会根据不同的认证模式而出现微小的差异。</p>
+
+<p>OAuth认证通用返回值说明:</p>
+
+<p>Response: <code class="highlighter-rouge">200</code></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;jwt token&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">35999</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;uuid&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"jti"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;uuid&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th>类型</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>access_token</td>
+      <td>String</td>
+      <td>token，如有必要，可用Base64解出Payload</td>
+    </tr>
+    <tr>
+      <td>token_type</td>
+      <td>String</td>
+      <td>Http请求头Authorization的前缀修饰符，如：Basic，Bearer</td>
+    </tr>
+    <tr>
+      <td>expires_in</td>
+      <td>number</td>
+      <td>过期时长，单位秒，<code class="highlighter-rouge">这不是一个时间戳</code></td>
+    </tr>
+    <tr>
+      <td>scope</td>
+      <td>String</td>
+      <td>当前Token的作用域</td>
+    </tr>
+    <tr>
+      <td>apiKey</td>
+      <td>String</td>
+      <td>对调用方无用</td>
+    </tr>
+    <tr>
+      <td>jti</td>
+      <td>String</td>
+      <td>对调用方无用</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Response: <code class="highlighter-rouge">40x</code></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>参数</th>
+      <th>类型</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>error</td>
+      <td>String</td>
+      <td>错误原因</td>
+    </tr>
+    <tr>
+      <td>error_description</td>
+      <td>String</td>
+      <td>错误原因描述</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="22-认证接口">2.2 认证接口</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Method</td>
+      <td>GET/POST</td>
+    </tr>
+    <tr>
+      <td>Path</td>
+      <td><code class="highlighter-rouge">api/uaa/oauth/token?grant_type=client_credentials</code></td>
+    </tr>
+    <tr>
+      <td>参数</td>
+      <td>无</td>
+    </tr>
+    <tr>
+      <td>请求头</td>
+      <td>Authorization: Basic <client_id:client_secret></client_id:client_secret></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Postman请求示例截图:</p>
+
+<p><img src="/img/2019-07-22-对接文档/postman-screenshot-1.jpg" alt="截图1" /></p>
+
+<hr />
+
+<h2 id="3-业务对接">3. 业务对接</h2>
+
+<p>业务接口需要使用认证接口中返回的<code class="highlighter-rouge">access_token</code>。
+按照<code class="highlighter-rouge">OAuth2.0</code>的使用标准，<code class="highlighter-rouge">access_token</code>可以直接使用在 <code class="highlighter-rouge">http(s)://&lt;domain&gt;/&lt;path&gt;?access_tken=&lt;access_token&gt;</code></p>
+
+<p>但是，<strong>这里不推荐这么做</strong>。因为认证采用的JWT方法，内容过长，建议直接存放到<code class="highlighter-rouge">Header</code>里:</p>
+<blockquote>
+  <p>HTTP Header: <code class="highlighter-rouge">Authorization:Bearer &lt;access_token&gt;</code></p>
+</blockquote>
+
+<p>或者在使用postman调试时，选用下面的配置:
+<img src="/img/2019-07-22-对接文档/postman-screenshot-2.jpg" alt="截图2" />
+找到Authorization选项卡 -&gt; Type=Breaer Token -&gt; Token 填入获得的<access_token></access_token></p>
+
+<p>上面这个操作等效于:
+<img src="/img/2019-07-22-对接文档/postman-screenshot-3.jpg" alt="截图3" /></p>
+
+<h3 id="31-查询接口">3.1 查询接口</h3>
+
+<h4 id="311-抽象指令对象">3.1.1 抽象指令对象</h4>
+
+<p>抽象的指令对象，会根据指令类型细分。</p>
+
+<p><img src="/img/2019-07-22-对接文档/command.jpg" alt="command" /></p>
+
+<p>精简的抽象指令请求对象：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345678-1234-1234-1234-123456789012"</span><span class="p">,</span><span class="w"> </span><span class="err">//一个UUID</span><span class="w">
+    </span><span class="s2">"commandState"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w"> </span><span class="err">//指令当前的状态</span><span class="w">
+    </span><span class="s2">"commandType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOVE"</span><span class="p">,</span><span class="w"> </span><span class="err">//指令类型</span><span class="w">
+    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ROBOT"</span><span class="p">,</span><span class="w"> </span><span class="err">//作用实体（设备）</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"81f7cc0c-b458-4312-a0b2-c88db10ec463"</span><span class="p">,</span><span class="w"> </span><span class="err">//作用实体Id（设备Id）</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>说明</th>
+      <th>值域</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>id,创建时无需填写</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>commandState</td>
+      <td>指令状态</td>
+      <td>PENDING</td>
+    </tr>
+    <tr>
+      <td>commandType</td>
+      <td>指令类型</td>
+      <td>MOVE,STOP</td>
+    </tr>
+    <tr>
+      <td>entityType</td>
+      <td>设备类型</td>
+      <td>ROBOT, HIVE, ELEVATOR</td>
+    </tr>
+    <tr>
+      <td>entityId</td>
+      <td>设备Id</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>完整的抽象指令返回对象：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f03e7cae-e86a-4664-9187-1ae197e3dfc3"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">指令uuid</span><span class="w">
+  </span><span class="s2">"commandState"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">指令状态</span><span class="w">
+  </span><span class="s2">"commandType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STOP"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">指令类型</span><span class="w">
+  </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ROBOT"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">实体类型</span><span class="w">
+  </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b33d1021-3374-4a16-bd58-1dd2a99021f7"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">实体Id</span><span class="w">
+  </span><span class="s2">"triggerCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">触发次数</span><span class="w">
+  </span><span class="s2">"detail"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"scheduleHistory"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">调度历史</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"retryable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">可重试</span><span class="w">
+  </span><span class="s2">"retries"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="err">/重试次数</span><span class="w">
+  </span><span class="s2">"updateTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631638612</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">更新时间</span><span class="w">
+  </span><span class="s2">"firstTriggeredTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631637451</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">第一次触发时间</span><span class="w">
+  </span><span class="s2">"lastTriggeredTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631637451</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">最后一次触发时间</span><span class="w">
+  </span><span class="s2">"lastAcknowledgedTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631639548</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">最后响应时间</span><span class="w">
+  </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b800c58-2952-4c98-9004-5ea4f33f92b8"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">创建人</span><span class="w">
+  </span><span class="s2">"createdTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631637430</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">创建时间</span><span class="w">
+  </span><span class="s2">"lastModifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6b800c58-2952-4c98-9004-5ea4f33f92b8"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">最后修改人</span><span class="w">
+  </span><span class="s2">"lastModifiedTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1563631639549</span><span class="p">,</span><span class="w"> </span><span class="err">//修改时间</span><span class="w">
+  </span><span class="s2">"expiryTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-08-19T14:07:19.548+0000"</span><span class="w"> </span><span class="err">//过期时间</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="312-查询指令">3.1.2 查询指令</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Method</td>
+      <td>GET</td>
+    </tr>
+    <tr>
+      <td>Path</td>
+      <td><code class="highlighter-rouge">api/task/v1/command/{id}</code></td>
+    </tr>
+    <tr>
+      <td>参数: id</td>
+      <td>指令Id</td>
+    </tr>
+    <tr>
+      <td>请求头</td>
+      <td>Authorization: Bearer <access_token></access_token></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>HTTP 状态码 200，返回值:</p>
+
+<p>根据指令类型是一个继承于<code class="highlighter-rouge">完整的抽象指令返回对象</code>(详见3.1.1)的子类。</p>
+
+<p>HTTP 状态码 4xx/5xx，返回值:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T02:35:55.861+0000"</span><span class="p">,</span><span class="w"> </span><span class="err">//响应时间</span><span class="w">
+  </span><span class="s2">"httpStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">HTTP状态描述</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Integer&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">HTTP</span><span class="w"> </span><span class="err">状态码</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">错误原因</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h4 id="313-创建指令">3.1.3 创建指令</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Method</td>
+      <td>POST</td>
+    </tr>
+    <tr>
+      <td>Path</td>
+      <td><code class="highlighter-rouge">api/task/v1/command</code></td>
+    </tr>
+    <tr>
+      <td>参数</td>
+      <td>JSON指令对象</td>
+    </tr>
+    <tr>
+      <td>请求头</td>
+      <td>Authorization: Bearer <access_token></access_token></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p>移动指令(Move)</p>
+
+    <p>请求参数：
+  一个<code class="highlighter-rouge">精简的抽象指令请求对象</code>(详见3.1.1)</p>
+
+    <p>返回参数：
+  一个<code class="highlighter-rouge">完整的抽象指令返回对象</code>(详见3.1.1)</p>
+  </li>
+  <li>
+    <p>停止指令(Stop)</p>
+
+    <p>请求参数：
+  <code class="highlighter-rouge">继承</code>于精简的抽象指令请求对象(详见3.1.1)</p>
+
+    <p>返回参数：
+  <code class="highlighter-rouge">继承</code>于完整的抽象指令返回对象(详见3.1.1)</p>
+  </li>
+</ul>
+
+<p>HTTP 状态码 4xx/5xx，返回值:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T02:35:55.861+0000"</span><span class="p">,</span><span class="w"> </span><span class="err">//响应时间</span><span class="w">
+  </span><span class="s2">"httpStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">HTTP状态描述</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;Integer&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">HTTP</span><span class="w"> </span><span class="err">状态码</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;String&gt;"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">错误原因</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+  </div><a class="u-url" href="/docs/2019/07/22/%E5%AF%B9%E6%8E%A5%E6%96%87%E6%A1%A3.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Candela</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Candela</li><li><a class="u-email" href="mailto:develop@ctirobot.com">develop@ctirobot.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/ctirobot"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">ctirobot</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Candela Blogs </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
